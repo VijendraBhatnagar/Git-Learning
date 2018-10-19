@@ -1,0 +1,149 @@
+package in.gaso.mobile.android.gaso.adapter;
+
+/**
+ * Created by user on 24-03-2017.
+ */
+
+import java.util.ArrayList;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.squareup.picasso.Picasso;
+
+import in.gaso.mobile.android.gaso.R;
+import in.gaso.mobile.android.gaso.model.GirdItemBookGas;
+import in.gaso.mobile.android.gaso.model.GridItem;
+
+public class GridViewAdapterCoupon extends ArrayAdapter<GirdItemBookGas> {
+
+    private Context mContext;
+    private int layoutResourceId;
+    GirdItemBookGas item;
+
+
+    private ArrayList<GirdItemBookGas> mGridData = new ArrayList<GirdItemBookGas>();
+    ViewHolder holder;
+    int count=0;
+    public GridViewAdapterCoupon(Context mContext, int layoutResourceId, ArrayList<GirdItemBookGas> mGridData) {
+        super(mContext, layoutResourceId, mGridData);
+        this.layoutResourceId = layoutResourceId;
+        this.mContext = mContext;
+        this.mGridData = mGridData;
+    }
+
+    /**
+     * Updates grid data and refresh grid items.
+     * @param mGridData
+     */
+    public void setGridData(ArrayList<GirdItemBookGas> mGridData) {
+        this.mGridData = mGridData;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View row = convertView;
+
+        if (row == null) {
+            LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+            row = inflater.inflate(R.layout.grid_item_coupon_inflator, parent, false);
+            holder = new ViewHolder();
+            holder.priceTextView = (TextView) row.findViewById(R.id.grid_coupon_price);
+            holder.imageView = (ImageView) row.findViewById(R.id.grid_item_couponimage);
+            holder.urlTextView=(TextView)row.findViewById(R.id.grid_coupon_url);
+         //   holder.couponButton=(Button)row.findViewById(R.id.footer_coupon_update);
+            holder.chkBox=(CheckBox)row.findViewById(R.id.checkBoxcoupon);
+            row.setTag(holder);
+            String couponPrice=String.valueOf(holder.priceTextView);
+           /* holder.couponButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse ( "http://myhpgas.in/myHPGas/Login.aspx" )));
+                }
+            });*/
+
+            holder.chkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                  CheckBox checked =((CheckBox)view);
+                    GirdItemBookGas couponPrice=(GirdItemBookGas) view.getTag();
+                    if (checked.isChecked()==true ){
+                       /* if(couponPrice.getCountcoupon() < 2){
+                            couponPrice.setSelected(checked.isChecked());
+                            couponPrice.setCountcoupon(count++);
+                        }*/
+
+                    }
+                }
+            });
+
+        } else {
+            holder = (ViewHolder) row.getTag();
+        }
+
+        GirdItemBookGas item = mGridData.get(position);
+        holder.priceTextView.setText(Html.fromHtml(item.getPrice()));
+        //holder.urlTextView.setText(Html.fromHtml(item.getImage()));
+       // Picasso.with(mContext).load(item.getImage()).into(holder.imageView);
+        displayImageThroughPicaso(holder.imageView,item.getImage());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // openInUrl(holder.urlTextView.getText().toString());
+            }
+        });
+
+        return row;
+    }
+    private void displayImageThroughPicaso(ImageView productImage, String url) {
+        try {
+            Picasso.with ( mContext )
+                    .load ( url )
+                    .placeholder ( R.drawable.ic_history_black_24dp )   // optional
+                    .error ( R.mipmap.gaso_offer_default_image )
+                    // .resize ( 170, 170 )                        // optional
+                    // optional
+                    .into ( productImage );
+        }catch (IllegalArgumentException e){
+            e.printStackTrace ();
+        }catch (NullPointerException e){
+            e.printStackTrace ();
+        }
+    }
+
+
+    static class ViewHolder {
+        TextView priceTextView;
+        ImageView imageView;
+        TextView urlTextView;
+    //    Button couponButton;
+        CheckBox chkBox;
+    }
+
+    private   void openInUrl(String url) {
+        try {
+            if(url!="") {
+              mContext.startActivity ( new Intent( Intent.ACTION_VIEW, Uri.parse ( url ) ) );
+            }
+
+        }catch (NullPointerException e){
+            e.printStackTrace ();
+        }catch (Exception e){
+            e.printStackTrace ();
+        }
+
+    }
+
+}
