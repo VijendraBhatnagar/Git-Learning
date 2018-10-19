@@ -1,0 +1,122 @@
+package gaso.app.vendor.model;
+
+import java.util.ArrayList;
+
+/**
+ * Created by user on 27-03-2017.
+ */
+
+public class HomeModel {
+
+    private String branchName, thumbnailUrl;
+    private String branchAddress;
+    private String phone;
+    private String emailAddress;
+    private String vendor_id;
+    private String unActive;
+    private String active;
+    private String title;
+
+    private ArrayList<String> homedata;
+
+    public HomeModel(){
+
+    }
+
+    public HomeModel(String branchName, String thumbnailUrl, String phone, String emailAddress,String branchAddress,String unActive,
+                     ArrayList<String> homedata,String vendor_id,String active,String title){
+        this.branchName = branchName;
+        this.thumbnailUrl = thumbnailUrl;
+        this.phone = phone;
+        this.emailAddress = emailAddress;
+        this.branchAddress=branchAddress;
+        this.unActive=unActive;
+        this.active=active;
+        this.homedata=homedata;
+        this.vendor_id=vendor_id;
+        this.title=title;
+    }
+
+    public String getbranchName() {
+        return branchName;
+    }
+
+    public void setbranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getvendor_id() {
+        return vendor_id;
+    }
+
+    public void setvendor_id(String vendor_id) {
+        this.vendor_id = vendor_id;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String getbranchAddress() {
+        return branchAddress;
+    }
+
+    public void setbranchAddress(String branchAddress) {
+        this.branchAddress = branchAddress;
+    }
+    public String getPhone(){
+        return phone;
+    }
+    public void setPhone(String phone){
+        this.phone= this.phone;
+    }
+
+    public String getemailAddress() {
+        return emailAddress;
+    }
+
+    public void setemailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getunActive(){
+        return unActive;
+    }
+    public void setunActive(String unActive){
+        this.unActive=unActive;
+    }
+
+    public String getactive(){
+        return active;
+    }
+    public void setactive(String active){
+        this.active=active;
+    }
+
+    public String getVendor_id(){
+        return vendor_id;
+    }
+    public void setvendor_id(){
+        this.vendor_id=vendor_id;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+    public void setTitle(String title){
+        this.title=title;
+    }
+
+    public ArrayList<String> gethomedata() {
+        return homedata;
+    }
+
+    public void setGenre(ArrayList<String> homedata) {
+        this.homedata = homedata;
+    }
+
+}
