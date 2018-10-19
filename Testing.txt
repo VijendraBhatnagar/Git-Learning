@@ -1,0 +1,22 @@
+
+Eclipse shortcut
+alt+shift+q  -Shows list of shortcut
+Ctrl+Shift+L to open the Key Assist
+
+Note:-To get package explore click on java(on right) next to firebug.
+
+FrameWork
+https://walkingtree.tech/index.php/data-driven-testing-with-selenium-apache-poi-and-testng
+
+Selenium Interview Questions
+http://toolsqa.com/selenium-webdriver/selenium-interview-questions-part-1/
+
+Vikash Ahuja blog
+http://automationworld.tk/category/testing-job-section/
+
+Agile scrum doc
+http://www.softwaretestinghelp.com/agile-scrum-methodology-for-development-and-testing/
+Test Strategy
+http://istqbexamcertification.com/what-are-the-test-approaches-or-strategies-in-software-testing/
+GetwindowHandle() practical example 
+http://toolsqa.com/selenium-webdriver/switch-commands/
